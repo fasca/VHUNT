@@ -1,0 +1,8 @@
+<!-- ERB nous permet de définir des vues partielles qui sont des fichiers ERB qui commence par un _ et qu’on peut injecter dans d’autres templates -->
+<%= simple_form_for @product do |f| %>
+	<%= f.input :name, placeholder: "kudoz", label: "quel est le produit?" %>
+	<%= f.input :url, placeholder: "adresseweb.com", label: "quelle est l'url?" %>
+	<%= f.input :tagline, placeholder: "commentaire", label: "quelle est la tagline?" %>
+	<%= f.input :category, collection: ["tech", "education", "design"], prompt: "quelle categorie?" %>
+	<%= f.button :submit, "Editer", class: "btn btn-primary" %>
+<% end %>

@@ -1,2 +1,38 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+<!--
+<div class="container text-center">
+	<h1>VHUNT</h1>
+	<h1>Pages#home</h1>
+	<p>Find me in app/views/pages/home.html.erb</p>
+-->
+	<!-- HELPER : Utilisation de la methode "link_to" permettant de construir un lien grace au prefix d'un URI Pattern visible dans la table des routes-->
+<!--	
+	<p>
+		<%= link_to "Page des produits", products_path, class: "btn btn-primary" %>	
+	</p>
+</div>
+-->
+
+<!-- Ajout du banner. l'url de l'img est injecté via image_path. le CSS se trouve dans une partial "_banner.scss dans app/assets/stylesheets/components et il est appelé dans _index.scss du meme repertoire -->
+<div class="banner" style="background-image: linear-gradient(-225deg, rgba(0,101,168,0.6) 0%, rgba(0,36,61,0.6) 50%), url('<%= image_path "banner-home.jpg" %>');">
+  <div class="banner-content">
+    <h1>VHUNT</h1>
+    <p>Find me in app/views/pages/home.html.erb</p>
+    <%= link_to "Page des produits", products_path, class: "btn btn-primary btn-lg" %>
+  </div>
+</div>
+
+<!-- voir pourquoi padded ne fonctionne pas-->
+<div class="container padded">
+	<div class="row">
+		<div class="col-xs-12 col-sm-4">
+			<%= link_to "tech", products_path(category: "tech"), class: "card-category tech" %>
+		</div>
+		<div class="col-xs-12 col-sm-4">
+			<%= link_to "education", products_path(category: "education"), class: "card-category education" %>
+		</div>
+		<div class="col-xs-12 col-sm-4">
+			<%= link_to "design", products_path(category: "design"), class: "card-category design" %>
+		</div>
+	</div>
+</div>
+

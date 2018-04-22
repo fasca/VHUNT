@@ -1,0 +1,72 @@
+<div class="container">
+	<h1>VHUNT</h1>
+	<p>Projet de test RoR: page index</p>
+		
+	<!-- HELPER : Utilisation de la methode "link_to" permettant de construir un lien grace au prefix d'un URI Pattern visible dans la table des routes-->
+	<p>
+		<%= link_to "Revenir à l'accueil", root_path, class: "btn btn-primary" %>
+		<%= link_to "Ajouter un produit", new_product_path, class: "btn btn-primary" %>
+	</p>
+	
+	<div class="row">
+		<div class="col-xs-12 col-sm-10 col-sm-offset-1">
+			<p> 
+		<!-- affiche le tab @products joint par ";"-->
+		<!-- <%= @products.join(';') %> date: <%= @date %> -->
+		
+		<!-- boucle le tab @products et affiche chaques resultats -->
+		<% @products.each do |product| %>
+			<li> 
+				<!-- <%= product[:name] %> (<%= product[:category] %>) -->
+				<%= product.name %> (<%= product.url %>)
+
+				<!-- HELPER : le product path de chaque produit, le lien GET /products/:id -->
+				<%= link_to "Details", product_path(product) %>
+				
+				<!-- SUPPRIMER un produit, il faut ajouter delete pour differencier la methode http GET / DLEETE-->
+				<%= link_to "Supprimer", product_path(product), method: :delete %>
+			</li>
+
+			<div class="product">
+			  <div class='product-upvote'>
+			    <div class="product-arrow"></div>
+			    <div class='product-count'>95</div>
+			  </div>
+			  <img src="http://unsplash.it/300/200?random" alt="kudoz" class="product-image hidden-xs">
+			  <div class='product-body'>
+			    <h3><%= product.name %></h3>
+			    <p><%= product.tagline %></p>
+			  </div>
+			  <ul class="list-inline product-controls hidden-sm hidden-xs">
+				
+				<!-- HELPER : le product path de chaque produit, le lien GET /products/:id, ici nous n'avons pas de text et on utilise "do...end" -->
+				<li>
+			  	<%= link_to product_path(product) do %>
+			  		<i class="fa fa-eye"></i>
+			  	<% end %>
+			    </li>
+				
+				<li>
+			  	<%= link_to edit_product_path(product) do %>
+			  		<i class="fa fa-pencil-alt"></i>
+			  	<% end %>
+			    </li>
+
+			    <li>
+			  	<%= link_to product_path(product), method: :delete do %>
+			  		<i class="fa fa-trash"></i>
+			  	<% end %>
+			    </li>
+			   <!-- <li><a href=""><i class="fa fa-share"></i></a></li>
+			    <li><a href=""><i class="fa fa-star"></i></a></li>-->
+			  </ul>
+			</div>
+
+
+		<% end %>
+	</p>
+		</div>
+	</div>
+
+	
+</div>
