@@ -25,6 +25,12 @@
     		<%= @product.category %>
     	</span>
     </p>
+    <!-- proteger le code -->
+    <% if @product.user %>
+	    <p>
+	    	par <%= @product.user.email %>
+	    </p>
+    <% end %>
     <p>Find me in app/views/pages/home.html.erb</p>
     <%= link_to "GET IT", @product.url, class: "btn btn-primary btn-lg" %>
     <%= link_to "Page des produits", products_path, class: "btn btn-primary btn-lg" %>

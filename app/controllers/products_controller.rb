@@ -71,6 +71,9 @@ class ProductsController < ApplicationController
 		#les strong params permettant de filtrer les params
 		#en gros c'est une fonction qui filtre
 		@product = Product.new(product_params)
+		#ICI on recupere l'utilisateur courrant qui est connecté à sa session, 
+		#cette methode est fournit pas "Devise"
+		@product.user = current_user
 		#si il a respecté les champs obligatoires on save et on redirige sur la page des produits
 		if @product.save 
 			redirect_to products_path

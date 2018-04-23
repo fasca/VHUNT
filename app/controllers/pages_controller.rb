@@ -1,4 +1,6 @@
 class PagesController < ApplicationController
+  #ICI on annule la securité page planche pour les pages_controller
+  skip_before_action :authenticate_user!
   def home
   	#Renvoyer un texte simple:
   	#render plain: "Welcome!"

@@ -11,6 +11,9 @@
   </head>
   <body>
     <%= render "shared/navbar" %>
+    <!-- Pour la Gem Devise (auth) si co ou pas -->
+    <%= render "shared/flashes" %>
+
     <%= yield %>
     <%= render "shared/footer" %>
     <%= javascript_include_tag 'application' %>
