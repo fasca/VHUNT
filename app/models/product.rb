@@ -1,4 +1,7 @@
 class Product < ApplicationRecord
+	#relation BDD pour cloudinary
+	has_attachment :photo
+
 	#relation BDD, un produit est publié par un user
 	belongs_to :user
 

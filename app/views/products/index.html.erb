@@ -32,7 +32,12 @@
 			    <div class="product-arrow"></div>
 			    <div class='product-count'>95</div>
 			  </div>
-			  <img src="http://unsplash.it/300/200?random" alt="kudoz" class="product-image hidden-xs">
+			  <!-- on fait une condition avec la methode cloudinary qui fournit la balise img  -->
+			  <% if product.photo? %>
+			  	<%= cl_image_tag(product.photo.path, height: 117, width: 175, crop: :fill, class: 'product-image') %>
+			  <% else %>
+			  	<img src="http://unsplash.it/300/200?random" alt="kudoz" class="product-image hidden-xs">
+			  <% end %>
 			  <div class='product-body'>
 			    <h3><%= product.name %></h3>
 			    <p><%= product.tagline %></p>

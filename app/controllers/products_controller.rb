@@ -1,6 +1,6 @@
 class ProductsController < ApplicationController
 	#Avant d'appeler certaines actions, appel d'abord la methode
-	#find_product. before_action permet re refactoriser le code
+	#find_product. before_action permet de refactoriser le code
 	#car on récupere souvent la valeur dans la bdd "@product = Product.find(params[:id])"
 	before_action :find_product, only: [:show, :edit, :update, :destroy]
 
@@ -108,14 +108,20 @@ class ProductsController < ApplicationController
 	def destroy
 		#PLUS BESOIN CAR LE CODE EST APPELE VIA BEFORE_ACTION PLUS HAUT
 		#@product = Product.find(params[:id])
-		@product.destroy
-		redirect_to products_path
+		if current_user == @product.user
+			@product.destroy
+			redirect_to products_path
+		else
+			#voir la doc de "Devise", utilisation de message flash pour notifier 
+			flash[:alert] = "Action impossible, vous n'avez pas publié ce produit"
+			redirect_to products_path
+		end
 	end
 
 	private
   	def product_params
   		#require permet de garder que ce que contient product puis on filtre avec permit
-    	params.require(:product).permit(:name, :url, :tagline, :category)
+    	params.require(:product).permit(:name, :url, :tagline, :category, :photo)
   	end
 
   	def find_product

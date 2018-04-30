@@ -7,5 +7,6 @@
 	<%= f.input :url, placeholder: "adresseweb.com", label: "quelle est l'url?" %>
 	<%= f.input :tagline, placeholder: "commentaire", label: "quelle est la tagline?" %>
 	<%= f.input :category, collection: ["tech", "education", "design"], prompt: "quelle categorie?" %>
+	<%= f.input :photo, as: :attachinary %>
 	<%= f.button :submit, "Editer", class: "btn btn-primary" %>
 <% end %>

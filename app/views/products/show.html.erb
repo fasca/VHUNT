@@ -15,8 +15,10 @@
 		<%= link_to "Editer", edit_product_path(@product), class: "btn btn-primary" %>
 		<%= link_to "Supprimer", product_path(@product), method: :delete, class: "btn btn-primary" %>
 	</p>
-
-<div class="banner" style="background-image: linear-gradient(-225deg, rgba(0,101,168,0.6) 0%, rgba(0,36,61,0.6) 50%), url('<%= image_path "banner-home.jpg" %>');">
+<!-- Banner avec image_path -->
+<!-- <div class="banner" style="background-image: linear-gradient(-225deg, rgba(0,101,168,0.6) 0%, rgba(0,36,61,0.6) 50%), url('<%= image_path "banner-home.jpg" %>');"> -->
+<!-- Banner avec cloudinary_url qui permet d'avoir que l'url dans une condition ternaire-->
+<div class="banner" style="background-image: linear-gradient(-225deg, rgba(0,101,168,0.6) 0%, rgba(0,36,61,0.6) 50%), url('<%= @product.photo? ? cloudinary_url(@product.photo.path, width: 1280, height: 700, crop: :fill) : image_path("banner-home.jpg") %>');">
   <div class="banner-content">
     <h1> <%= @product.name %> </h1>
     <p> 
@@ -34,6 +36,10 @@
     <p>Find me in app/views/pages/home.html.erb</p>
     <%= link_to "GET IT", @product.url, class: "btn btn-primary btn-lg" %>
     <%= link_to "Page des produits", products_path, class: "btn btn-primary btn-lg" %>
+	<!-- photo cloudinary -->
+    <% if @product.photo? %>
+	  <%= cl_image_tag @product.photo.path, width: 200 %>
+	<% end %>
   </div>
 </div>
 
